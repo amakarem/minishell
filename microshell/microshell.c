@@ -6,7 +6,7 @@
 /*   By: aelaaser <aelaaser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 15:08:40 by aelaaser          #+#    #+#             */
-/*   Updated: 2025/05/07 16:02:06 by aelaaser         ###   ########.fr       */
+/*   Updated: 2025/05/08 17:34:15 by aelaaser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ int ft_strlen(char *str)
 	
 	i = 0;
 	while (str[i])
-	{
 		i++;
-	}
 	return (i);
 }
 int err(char *str)
@@ -34,10 +32,9 @@ int cd(char **argv, int i)
 {
 	if (i != 2)
 		return (err("error: cd: bad arguments\n"));
-	else if (chdir(argv[1]) == -1)
+	if (chdir(argv[1]) == -1)
 		return (err("error: cd: cannot change directory to "), err(argv[1]), err("\n"));
-	else
-		return (0);
+	return (0);
 }
 int exec(char **argv, char **envp, int i)
 {
@@ -48,20 +45,20 @@ int exec(char **argv, char **envp, int i)
 
 	has_pipe = argv[i] && !strcmp(argv[i], "|");
 	if (has_pipe && pipe(fd) == -1)
-		return (err("fatel error\n"));
+		return (err("error: fatel\n"));
 	pid = fork();
 	if (!pid)
 	{
 		argv[i] = 0;
 		if (has_pipe && (dup2(fd[1], 1) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
-			return (err("fatel error\n"));
+			return (err("error: fatel\n"));
 		execve(*argv, argv, envp);
 		return (err("error: cannot execute "), err(*argv), err("\n"));
 	}
 	waitpid(pid, &status, 0);
 	if (has_pipe && (dup2(fd[0], 0) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
-		return (err("fatel error\n"));
-	return(WIFEXITED(status));
+		return (err("error: fatel\n"));
+	return (WIFEXITED(status));
 }
 
 int main(int argc, char **argv, char **envp)
