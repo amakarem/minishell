@@ -33,5 +33,6 @@ A minimalist Unix shell implementation in C, designed to mimic basic functionali
   ```
 
 3. Run the shell:
-  ```./minishell
+  ```
+  ./minishell
   ```
