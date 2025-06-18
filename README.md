@@ -22,17 +22,16 @@ A minimalist Unix shell implementation in C, designed to mimic basic functionali
 
 1. Clone the repository:
 
-   ```bash
+  ```bash
    git clone https://github.com/amakarem/minishell.git
    cd minishell
+  ```
    
 2. Compile the project:
-```bash
-   make
-
-2. Compile the project:
-```bash
-   make
+  ```bash
+     make
+  ```
 
 3. Run the shell:
-```./minishell
+  ```./minishell
+  ```
