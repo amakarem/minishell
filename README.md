@@ -24,13 +24,15 @@ A minimalist Unix shell implementation in C, designed to mimic basic functionali
 
    ```bash
    git clone https://github.com/amakarem/minishell.git
-   cd minishell```
+   cd minishell
+   
 2. Compile the project:
 ```bash
-   make```
+   make
 
 2. Compile the project:
 ```bash
-   make```
+   make
+
 3. Run the shell:
-```./minishell```
+```./minishell
